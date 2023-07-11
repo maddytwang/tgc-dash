@@ -53,3 +53,14 @@
   align-items: center;
   align-self: right
 }
+
+.visual {
+  font-family: "Questrial";
+  font-size: 15px; 
+  font-weight: bold;
+  display: inline;
+  align-self: center;
+  padding-bottom: 100
+}
+
+

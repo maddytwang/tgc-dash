@@ -214,18 +214,19 @@ total_rev = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H2("Total Revenue:", className="card-title h2"),
+                html.H2("Total Revenue:", className="visual"),
                 dcc.Graph(id="total-revenue", figure={}),
             ],
         )
     ],
     color='info', outline=True
 )
+
 items_sold = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H3("Items Sold:", className="card-title h3"),
+                html.H3("Items Sold:", className="visual"),
                 dcc.Graph(id="items-sold", figure={}),
             ],
         )
@@ -236,7 +237,7 @@ greenscore = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H2("Greenscore", className="greenscore h2"),
+                html.H2("Greenscore", className="visual"),
                 dcc.Graph(id='greenscore', figure={})
             ],
         )
@@ -248,7 +249,7 @@ sale_count = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H3("Sale Count:", className="card-title h3"),
+                html.H3("Sale Count:", className="visual"),
                 dcc.Graph(id="sale-count", figure={}),
             ],
         )
@@ -280,10 +281,24 @@ app.layout = html.Div([
     ),
     dbc.Container(
         [
-            dbc.Card(all_input_cards)
-        ]
+            dbc.Card(all_input_cards),
+            html.Br(),
+            dbc.Row(children = [
+                dbc.Col(greenscore, width = 3),
+                dbc.Col(total_rev, width = 3),
+                dbc.Col(sale_count, width = 3),
+                dbc.Col(items_sold, width = 3),
+                ], className = 'row', style={"height": "500px"} ),
+            html.Br(),
+            pyramid_graph,
+            dbc.Row(children = [
+                dbc.Col(pie_chart, width = 8),
+                dbc.Col(no_sale_table, width = 4),
+                ], className = 'row'),
+        ], 
     )
 ])
+
 # Callback to update the dashboard title based on the selected brand
 @app.callback(
     Output('dashboard-title', 'children'),
@@ -529,3 +544,8 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
+
+
+# update cards
+# fix call back errors to the charts
