@@ -205,7 +205,7 @@ all_input_cards = dbc.Card(
                         labelStyle={'display': 'block'},
                 ),
             ],
-        style = {'height':'300px'}),
+        style = {'height':'225px'}),
     ],
     color = 'success', outline = True
 )
@@ -281,7 +281,7 @@ app.layout = html.Div([
     ),
     dbc.Container(
         [
-            dbc.Card(all_input_cards),
+            dbc.Card(all_input_cards, style= {'height':'225px'}),
             html.Br(),
             dbc.Row(children = [
                 dbc.Col(greenscore, width = 3),
@@ -546,6 +546,3 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 
 
-
-# update cards
-# fix call back errors to the charts

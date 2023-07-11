@@ -23,7 +23,7 @@
     font-weight: bold;
     display: inline;
     align-self: center;
-    padding-bottom: 100
+    padding-bottom: 100; 
   }
 
   #date-picker-single{
@@ -63,4 +63,10 @@
   padding-bottom: 100
 }
 
+.selector {
+  height: 300;
+}
 
+.card-body{
+  height: 200px;
+}
