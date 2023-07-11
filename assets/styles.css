@@ -1,0 +1,55 @@
+.banner {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px
+  }
+  
+  .logo {
+    height: 50px; 
+    margin-right: 10px; 
+    display: inline
+  }
+  
+  .logo-text {
+    font-size: 24px; 
+    font-weight: bold;
+    display: inline;
+    align-self: center
+  }
+
+  .input-card-title{
+    font-family: "Questrial";
+    font-size: 15px; 
+    font-weight: bold;
+    display: inline;
+    align-self: center;
+    padding-bottom: 100
+  }
+
+  #date-picker-single{
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  #date-picker-range{
+    align-items: center;
+  }
+
+  .btn-group {
+    font-family: "Questrial";
+    font-size: 10px; 
+    font-weight: bold;
+    align-self: center;
+    padding-bottom: 100;
+  }
+
+.period-select{
+  align-items: center;
+  align-self: right
+}
