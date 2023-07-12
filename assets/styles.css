@@ -39,6 +39,7 @@
 
   #date-picker-range{
     align-items: center;
+    padding-bottom: 10px;
   }
 
   .btn-group {
@@ -68,5 +69,9 @@
 }
 
 .card-body{
+  height: 200px;
+}
+
+.col-3{
   height: 200px;
 }

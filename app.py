@@ -288,7 +288,7 @@ app.layout = html.Div([
                 dbc.Col(total_rev, width = 3),
                 dbc.Col(sale_count, width = 3),
                 dbc.Col(items_sold, width = 3),
-                ], className = 'row', style={"height": "500px"} ),
+                ], className = 'row', style={"height": "200px"} ),
             html.Br(),
             pyramid_graph,
             dbc.Row(children = [
@@ -485,11 +485,16 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
             mode = "number+delta",
             value= float_tr,
             number = {"prefix":"$"},
-            delta={"position": "top", "reference": determine_delta(updated_revenue_78_weeks.copy(), brand_name, start_date, dates_range),
+            delta={"position": "bottom", "reference": determine_delta(updated_revenue_78_weeks.copy(), brand_name, start_date, dates_range),
                     'relative': True, "valueformat": ".1f"},
             title = {"text":length_previously(dates_range)},
             domain={"x": [0, 1], "y": [0, 1]},
         )
+    )
+    fig3.update_layout(
+        height=160,
+        width=200,
+        margin=dict(l=50, r=50, t=50, b=50)
     )
     zero_sales_products_df = pd.DataFrame(zero_sales_products, columns = ['No Sale Products'])
     fig4 = dict(
@@ -513,6 +518,11 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
             domain={"x": [0, 1], "y": [0, 1]},
         )
     )
+    fig5.update_layout(
+        height=160,
+        width=200,
+        margin=dict(l=50, r=50, t=50, b=50)
+    )
     item_count_num = np.sum(item_count[item_count['Supplier'] == brand_name][dates].values)
     fig6= go.Figure(
         go.Indicator(
@@ -524,21 +534,26 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
             domain={"x": [0, 1], "y": [0, 1]},
         )
     )
+    fig6.update_layout(
+        height=160,
+        width=200,
+        margin=dict(l=50, r=50, t=50, b=50)
+    )
     value = 85
     fig7 = go.Figure(
         go.Indicator(
         mode="gauge+number", 
         value=value, 
-        title={'text': "Green Score"},
-        domain={'x': [0, 1], 'y': [0, 1]}
+        # title={'text': "Green Score"},
+        domain={'x': [0, 1], 'y': [0, 1]},
         ))
     fig7.update_traces(gauge = {'axis': {'range': [None, 100]},  # Customize the gauge range
                                  'bar': {'color': get_gauge_color(value)}  # Dynamically set the gauge bar color based on value
                                 })
-    # fig7.update_layout(
-    #     width=600,                                # Customize the plot width
-    #     height=400,                               # Customize the plot height
-    #     margin=dict(l=50, r=50, t=50, b=50))     # Customize the plot margins
+    fig7.update_layout(
+        width=200,                                # Customize the plot width
+        height=150,                               # Customize the plot height
+        margin=dict(l=50, r=50, t=50, b=50))     # Customize the plot margins
     return fig1, fig2, fig3, fig4, fig5, fig6, fig7
 
 
