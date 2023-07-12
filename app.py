@@ -486,7 +486,7 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
             value= float_tr,
             number = {"prefix":"$"},
             delta={"position": "top", "reference": determine_delta(updated_revenue_78_weeks.copy(), brand_name, start_date, dates_range),
-                    'relative': True, "valueformat": ".1f", "suffix": "%"},
+                    'relative': True, "valueformat": ".1f"},
             title = {"text":length_previously(dates_range)},
             domain={"x": [0, 1], "y": [0, 1]},
         )
@@ -508,7 +508,7 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
             mode = "number+delta",
             value= int(sale_count_num),
             delta={"reference": determine_delta(updated_78_sale_count.copy(), brand_name, start_date, dates_range),
-                    'relative': True, "valueformat": ".1f", "suffix": "%"},
+                    'relative': True, "valueformat": ".1f"},
             title = {"text":length_previously(dates_range)},
             domain={"x": [0, 1], "y": [0, 1]},
         )
@@ -519,7 +519,7 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
             mode = "number+delta",
             value= int(item_count_num),
             delta={"reference": determine_delta(updated_78_item_count_products.copy(), brand_name, start_date, dates_range),
-                    'relative': True, "valueformat": ".1f", "suffix": "%"},
+                    'relative': True, "valueformat": ".1f"},
             title = {"text":length_previously(dates_range)},
             domain={"x": [0, 1], "y": [0, 1]},
         )
