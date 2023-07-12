@@ -475,6 +475,9 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
             )
         ]
     )
+    fig2.update_layout(
+        height = 500,
+    )
     
     total_revenue = np.sum(revenue[revenue['Supplier'] == brand_name][dates].values)
     tr = "{:,.2f}".format(total_revenue)
