@@ -439,17 +439,19 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
     # zero_items_sold = brands_products_item_df[brands_products_item_df['Sum of Items Sold'] == 0]['Product']
     brands_products_item_df= brands_products_item_df[brands_products_item_df['Sum of Items Sold'] != 0]
     top_10 = brands_products_item_df.nlargest(10, 'Sum of Items Sold').sort_values('Sum of Items Sold', ascending=True)
+    print(top_10.columns)
     fig1 = go.Figure(
         data=[
             go.Bar(
                 y=top_10['Product'],
                 x=top_10['Sum of Items Sold'],
                 orientation='h',
-                marker=dict(color='#4D8B31')
+                marker=dict(color='#4D8B31'),
+                hover_data=top_10['Gross Profit']
             )
         ],
         layout=go.Layout(
-            title='Top Performers',
+            title='Top Products by Sales Performance',
             xaxis=dict(title='Items Sold'),
             yaxis={'title':'Products',
                        'visible':False
@@ -586,5 +588,4 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-
 
