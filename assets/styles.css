@@ -1,3 +1,7 @@
+/* body{
+  background-color: #FDF0D5
+} */
+
 .banner {
     display: flex;
     align-items: center;
@@ -78,4 +82,9 @@
 
 .legend{
   font-size: small;
+}
+
+
+.card.border-info{
+  border-color: #10890c;
 }

@@ -219,7 +219,7 @@ total_rev = dbc.Card(
             ],
         )
     ],
-    color='info', outline=True
+    color='success', outline=True
 )
 
 items_sold = dbc.Card(
@@ -231,7 +231,7 @@ items_sold = dbc.Card(
             ],
         )
     ],
-    color='info', outline=True
+    color='success', outline=True
 )
 greenscore = dbc.Card(
     [
@@ -254,8 +254,23 @@ sale_count = dbc.Card(
             ],
         )
     ],
-    color='info', outline=True
+    color='success', outline=True
 )
+
+# insights = dbc.Card([
+#     dbc.CardBody(
+#         [
+#         dcc.Markdown('''#### Handpicked Insights'''),
+#         dbc.Card([
+#             dbc.CardBody([
+#                 html.P("Revenue increased by 10% this quarter")
+#             ], className = 'individual-insights')
+#         ])
+
+#                     ]
+#                 )
+# ], className = 'insight-card'
+# )
 
 def get_gauge_color(value):
     if value < 50:
@@ -294,6 +309,7 @@ app.layout = html.Div([
             dbc.Row(children = [
                 dbc.Col(pie_chart, width = 8),
                 dbc.Col(no_sale_table, width = 4),
+                # dbc.Col(insights, width = 8)
                 ], className = 'row'),
         ], 
     )
@@ -387,7 +403,10 @@ def update_date_range(value, date):
     Output("no-sale-table", "figure"),
     Output("sale-count", "figure"),
     Output("items-sold", "figure"),
-    Output("greenscore", "figure")],
+    Output("greenscore", "figure")
+    # ,
+    # Output('insight-card', "card")
+    ],
     [Input('supplier-dropdown', 'value'),
     Input('date-picker-range','start_date'),
     Input('date-picker-range', 'end_date'),
@@ -426,17 +445,21 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
                 y=top_10['Product'],
                 x=top_10['Sum of Items Sold'],
                 orientation='h',
-                marker=dict(color='steelblue')
+                marker=dict(color='#4D8B31')
             )
         ],
         layout=go.Layout(
-            title='Best Sellers',
+            title='Top Performers',
             xaxis=dict(title='Items Sold'),
-            yaxis=dict(title='Products'),
-            height=500,
+            yaxis={'title':'Products',
+                       'visible':False
+                       },
+            height=300,
             bargap=0.1
+
         )
     )
+    fig1.update_traces(marker_color="#4D8B31")
     
     sku_of_products_sales_df = sale_count[sale_count['Supplier'] == brand_name]['SKU']
     brands_products_sales = sale_count[sale_count['SKU'].isin(sku_of_products_sales_df)]
@@ -499,7 +522,7 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
         width=200,
         margin=dict(l=50, r=50, t=50, b=50)
     )
-    zero_sales_products_df = pd.DataFrame(zero_sales_products, columns = ['No Sale Products'])
+    zero_sales_products_df = pd.DataFrame(zero_sales_products, columns = ['Needs Improvement (No Sale)'])
     fig4 = dict(
         data =[
             dict(
@@ -557,6 +580,7 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
         width=200,                                # Customize the plot width
         height=150,                               # Customize the plot height
         margin=dict(l=50, r=50, t=50, b=50))     # Customize the plot margins
+
     return fig1, fig2, fig3, fig4, fig5, fig6, fig7
 
 
