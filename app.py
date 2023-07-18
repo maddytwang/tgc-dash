@@ -5,6 +5,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, ClientsideFunction
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
+import plotly.express as px
 
 import numpy as np
 import pandas as pd
@@ -35,6 +36,7 @@ revenue_78_weeks_df = pd.read_csv("data/vend-total_revenue-for-supplier-by-week 
 sale_count_product_78_weeks = pd.read_csv("data/vend-sale_count-for-product-by-week (2022-01-03 to 2023-06-27).csv")
 item_count_product_78_weeks = pd.read_csv("data/vend-item_count-for-product-by-week (2022-01-03 to 2023-06-27).csv")
 products = pd.read_csv("data/product-export.csv")
+inventory_ct = pd.read_csv('data/vend-total_revenue-for-inventory_product-by-all (2023-06-26 to 2023-07-18).csv')
 
 #Data Cleaning
 
@@ -446,15 +448,14 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
                 y=top_10['Product'],
                 x=top_10['Sum of Items Sold'],
                 orientation='h',
-                marker=dict(color='#4D8B31'),
-                hover_data=top_10['Gross Profit']
+                marker=dict(color='#4D8B31')
             )
         ],
         layout=go.Layout(
             title='Top Products by Sales Performance',
             xaxis=dict(title='Items Sold'),
             yaxis={'title':'Products',
-                       'visible':False
+                       'visible':True
                        },
             height=300,
             bargap=0.1
@@ -502,6 +503,7 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
     )
     fig2.update_layout(
         height = 500,
+        width=900
     )
     
     total_revenue = np.sum(revenue[revenue['Supplier'] == brand_name][dates].values)
@@ -521,7 +523,7 @@ def update_graphs(brand_name, start_date, end_date, dates_range):
     )
     fig3.update_layout(
         height=160,
-        width=200,
+        width=400,
         margin=dict(l=50, r=50, t=50, b=50)
     )
     zero_sales_products_df = pd.DataFrame(zero_sales_products, columns = ['Needs Improvement (No Sale)'])
